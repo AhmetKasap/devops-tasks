@@ -1,0 +1,55 @@
+sudo apt update
+sudo apt upgrade
+
+# git kurulumu
+sudo apt install git
+git --version
+
+# nodejs kurulumu
+sudo apt install nodejs
+node --version
+npm --version
+
+# apache2 kurulumu
+sudo apt install apache2
+
+# apache2 ye sitenin eklenmesi
+cd /var/www                   # Siteyi yayınlayacağımız dosyayı açma.
+sudo mkdir denemeProje       
+cd denemeProje                
+
+git clone https://github.com/AhmetKasap/blog            
+
+sudo npm install -g pm2       
+sudo pm2 start app.js -i 2     # projeyi yayınladık.
+
+# apache2 config
+
+cd /etc/apache2/sites-available # klasörüne git
+ls
+sudo mkdir nodeProject.conf     # conf dosyasını oluştur
+nanonodejsProject.conf         
+
+<VirtualHost *:80>                                           
+    ServerAdmin example@gmail.com                           
+    ServerName www.example.com                              
+    DocumentRoot /var/www/nodeProje/nodeProjectDeneme        
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log                     
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    <Location "/">                                           
+        ProxyPreserveHost On
+        ProxyPass http://127.0.0.1:3000/
+        ProxyPassReverse http://127.0.0.1:3000/
+    </Location>
+</VirtualHost>
+
+sudo a2ensite nodejsProject.conf   # conf dosyasını etkinleştir
+sudo a2dissite 000-default.conf    # varsayılan conf dosyası etkinliğini sonlandır
+
+sudo a2enmod proxy                 # yönlendirme yapılabilmesi için ayarlamalar.
+sudo a2enmod proxy_http
+
+sudo systemctl start  apache2      # apache2 başlatma
+sudo systemctl status apache2     

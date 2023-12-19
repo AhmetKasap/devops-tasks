@@ -1,0 +1,39 @@
+<%- include ('partials/header'); %>
+
+<%- include ('layouts/navbar'); %>
+<div class="row g-0">
+    <div class="col-xl-4 col-md-6 col-sm-12 mx-auto ">
+        <form action="">
+            <div class="mb-3 mx-3">
+                <label for="inp1" class="form-label fw-bold " >Ad Soyad</label>
+                <input type="text" class="form-control" id="inp1" placeholder="Yasin Akman" required>
+              </div>
+              <div class="mb-3 mx-3">
+                <label for="inp2" class="form-label fw-bold">Email address</label>
+                <input type="email" class="form-control" id="inp2" placeholder="yasinakman@example.com" required>
+              </div>
+              <div class="mb-3 mx-3">
+                <label for="inp3" class="form-label fw-bold">Konu</label>
+                <input type="text" class="form-control" id="inp3" placeholder="Konu Başlığı" required>
+              </div>
+              <div class="mb-3 mx-3">
+                <label for="inp4" class="form-label fw-bold">Konu İçeriği</label>
+                <textarea class="form-control" id="inp4" rows="15" required></textarea>
+              </div>
+              <div class="mb-3 mx-3 text-center">
+                <button class="btn btn-outline-success" type="submit">Gönder</button>
+              </div>
+
+        </form>
+        
+
+    </div>
+
+</div>
+
+
+
+
+<%- include ('layouts/footer'); %>
+
+<%- include ('partials/footer'); %>

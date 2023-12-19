@@ -1,0 +1,12 @@
+[Unit]
+Description=Server
+After=network.target
+
+[Service]
+User=ahmet
+Group=ahmet
+WorkingDirectory=/home/ahmet/example
+ExecStart=/usr/bin/gunicorn --workers 4 --bind unix:app.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

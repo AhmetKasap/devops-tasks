@@ -1,0 +1,78 @@
+<%- include ('partials/header'); %>
+
+<%- include ('layouts/navbar'); %>
+
+
+
+<style>
+  
+.menu-text-color2 {
+    color : black ;
+}
+
+.paragraph{
+    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;    
+    font-size: 18px;
+    line-height: 175%;
+    word-spacing: 3px;
+    color: black;
+}
+
+.paragraph2{
+    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;    
+    font-size: 16px;
+    line-height: 155%;
+    word-spacing: 3px;
+}
+
+.title{
+    font-family: fell, Georgia, Cambria, "Times New Roman", Times, serif;    
+}
+
+</style>
+        <div class="row g-0">
+            <div class="col-xl-2 col-md-2 col-sm-12 ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item "> <a href="" class="text-decoration-none menu-text-color2">
+                        <% if (typeof blogs !== 'undefined') { %>
+                            <% blogs.forEach(data => { %>
+                                <% if (data.categoryName == categories) { %>
+                                    <li class="list-group-item list-group-flush paragraph2"> <a href="/categories/<%= categories %>/<%= data._id %>?_method=GET" class="text-decoration-none text-dark"><%= data.title %></a> </li>
+                                <% } %>
+                            <% }) %>
+                        <% } %>
+                    </a></li>
+                   
+                </ul>
+            </div>
+            <div class="col-xl-8 col-md-7 col-sm-12 mx-auto ">
+                <div class=" w-75 mx-auto">
+                    
+                    <% if (typeof blogs !== 'undefined') {
+                        const foundBlog = blogs.find(data => data.categoryName === categories);
+                        if (foundBlog) { %>
+                            <h1 class="mt-5 mb-3 text-center"> <%= foundBlog.title %> </h1>
+                            <p class="paragraph"> <%- foundBlog.text %> </p>
+                    <%   } else { %>
+                            <div style="width: 100%; height: 1000px; ">
+                                <h1 class="text-center mx-auto">Yazılmış Bir Şey Yok</h1>
+                                
+                            </div>
+                    <%   }
+                    } else { %>
+                        <div style="width: 100%; height: 1000px;">
+                            OOPSS Daha Yazı Eklemedim
+                        </div>
+                    <% } %>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-2 col-sm-12 "></div>
+        </div>
+        <%- include ('layouts/footer') %>
+
+    <%- include ('partials/footer'); %>
